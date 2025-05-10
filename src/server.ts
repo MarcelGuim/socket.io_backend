@@ -111,6 +111,11 @@ chatIO.on('connection', (socket) => {
         }
     });
 
+    socket.on('user_login', (userName: String) =>{
+        console.log("the user: "+userName+" just got logged in, let's inform the rest");
+        socket.broadcast.emit('user_login',userName);
+    });
+
     // Manejar evento para unirse a una sala
     socket.on('join_room', (roomId: string) => {
         socket.join(roomId);
